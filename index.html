@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#0f0f13">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.svg" type="image/svg+xml">
+<title>FitPlan Bénin</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="app">
+  <header id="header">
+    <div class="header-left">
+      <span class="logo">💪 FitPlan</span>
+      <span class="subtitle" id="headerWeek">Semaine 1</span>
+    </div>
+    <div class="header-right">
+      <span class="streak" id="streakDisplay">🔥 0</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- PAGE ACCUEIL -->
+    <section class="page active" id="page-home">
+      <div class="welcome-card">
+        <h2>Salut Champion 👋</h2>
+        <p id="todayQuote">"Le meilleur moment pour commencer, c'est maintenant."</p>
+      </div>
+
+      <div class="section-title">
+        <span>Séance du jour</span>
+        <button class="text-btn" onclick="navigate('workout')">Voir le programme →</button>
+      </div>
+      <div class="today-card" id="todayCard">
+        <div class="today-header">
+          <span class="today-badge" id="todayBadge">Repos</span>
+          <span class="today-duration" id="todayDuration">-</span>
+        </div>
+        <ul class="today-exercises" id="todayExercises"></ul>
+        <button class="btn primary full mt-12" onclick="startTodayWorkout()">▶️ Commencer la séance</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value" id="statSeances">0</span>
+          <span class="stat-label">Séances faites</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="statStreak">0</span>
+          <span class="stat-label">Jours de suite</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="statWeight">-</span>
+          <span class="stat-label">Poids (kg)</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="statWeek">S1</span>
+          <span class="stat-label">Semaine</span>
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <span class="tip-icon">💡</span>
+        <div>
+          <strong>Astuce du jour</strong>
+          <p id="dailyTip">Bois 2-3L d'eau par jour, surtout avant/après l'entraînement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE PROGRAMME -->
+    <section class="page" id="page-workout">
+      <div class="section-title"><span>Programme 8 semaines</span></div>
+      <div class="week-selector" id="weekSelector"></div>
+      <div id="workoutDays"></div>
+    </section>
+
+    <!-- PAGE EXERCICES -->
+    <section class="page" id="page-exercises">
+      <div class="section-title"><span>Bibliothèque d'exercices</span></div>
+      <div class="search-bar">
+        <input type="text" id="exoSearch" placeholder="Rechercher un exercice..." oninput="filterExercises()">
+      </div>
+      <div class="exo-grid" id="exoGrid"></div>
+    </section>
+
+    <!-- PAGE CHRONO -->
+    <section class="page" id="page-timer">
+      <div class="tabs-mini">
+        <button class="tab-mini active" data-tab="stopwatch" onclick="switchTimerTab('stopwatch')">⏱️ Chrono</button>
+        <button class="tab-mini" data-tab="countdown" onclick="switchTimerTab('countdown')">⏳ Minuteur</button>
+        <button class="tab-mini" data-tab="interval" onclick="switchTimerTab('interval')">🔄 Circuit</button>
+      </div>
+
+      <div class="timer-tab active" id="tab-stopwatch">
+        <div class="timer-display" id="stopwatchDisplay">00:00.0</div>
+        <div class="timer-laps" id="laps"></div>
+        <div class="timer-controls">
+          <button class="btn danger" onclick="resetStopwatch()">⟲</button>
+          <button class="btn primary large" id="stopwatchBtn" onclick="toggleStopwatch()">▶️</button>
+          <button class="btn secondary" onclick="lapStopwatch()">⏱️</button>
+        </div>
+      </div>
+
+      <div class="timer-tab" id="tab-countdown">
+        <div class="timer-display" id="countdownDisplay">05:00</div>
+        <div class="timer-presets">
+          <button class="chip" onclick="setCountdown(60, this)">1 min</button>
+          <button class="chip" onclick="setCountdown(180, this)">3 min</button>
+          <button class="chip" onclick="setCountdown(300, this)">5 min</button>
+          <button class="chip active" onclick="setCountdown(600, this)">10 min</button>
+          <button class="chip" onclick="setCountdown(1800, this)">30 min</button>
+        </div>
+        <div class="timer-controls">
+          <button class="btn danger" onclick="resetCountdown()">⟲</button>
+          <button class="btn primary large" id="countdownBtn" onclick="toggleCountdown()">▶️</button>
+        </div>
+      </div>
+
+      <div class="timer-tab" id="tab-interval">
+        <div class="timer-display" id="intervalDisplay">00:00</div>
+        <div class="interval-status" id="intervalStatus">Prêt</div>
+        <div class="interval-config">
+          <label>Travail <input type="number" id="workTime" value="30" min="5" max="300">s</label>
+          <label>Repos <input type="number" id="restTime" value="15" min="5" max="300">s</label>
+          <label>Tours <input type="number" id="intervalRounds" value="8" min="1" max="50"></label>
+        </div>
+        <div class="timer-controls">
+          <button class="btn danger" onclick="resetInterval()">⟲</button>
+          <button class="btn primary large" id="intervalBtn" onclick="toggleInterval()">▶️</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE PROGRÈS -->
+    <section class="page" id="page-progress">
+      <div class="section-title"><span>Mon évolution</span></div>
+
+      <div class="progress-form">
+        <h3>Ajouter une mesure</h3>
+        <div class="form-row">
+          <input type="number" id="weightInput" placeholder="Poids (kg)" step="0.1">
+          <input type="number" id="waistInput" placeholder="Tour de taille (cm)">
+          <button class="btn primary" onclick="addMeasurement()">+</button>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="weightChart"></canvas>
+      </div>
+
+      <div class="measurements-list" id="measurementsList"></div>
+
+      <div class="progress-streak">
+        <h3>Calendrier</h3>
+        <div class="mini-calendar" id="miniCalendar"></div>
+      </div>
+    </section>
+  </main>
+
+  <nav id="bottomNav">
+    <button class="nav-item active" data-page="home" onclick="navigate('home')">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Accueil</span>
+    </button>
+    <button class="nav-item" data-page="workout" onclick="navigate('workout')">
+      <span class="nav-icon">📋</span>
+      <span class="nav-label">Programme</span>
+    </button>
+    <button class="nav-item" data-page="exercises" onclick="navigate('exercises')">
+      <span class="nav-icon">🏋️</span>
+      <span class="nav-label">Exercices</span>
+    </button>
+    <button class="nav-item" data-page="timer" onclick="navigate('timer')">
+      <span class="nav-icon">⏱️</span>
+      <span class="nav-label">Chrono</span>
+    </button>
+    <button class="nav-item" data-page="progress" onclick="navigate('progress')">
+      <span class="nav-icon">📈</span>
+      <span class="nav-label">Progrès</span>
+    </button>
+  </nav>
+</div>
+
+<!-- MODAL EXERCICE -->
+<div class="modal-overlay" id="exoModal" onclick="closeExoModal(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeExoModal()">✕</button>
+    <div class="modal-animation" id="modalAnimation">
+      <canvas id="exoCanvas" width="280" height="320"></canvas>
+    </div>
+    <h2 id="modalExoName">Exercice</h2>
+    <div class="modal-tags" id="modalTags"></div>
+    <p id="modalExoDesc"></p>
+    <div class="modal-instructions" id="modalInstructions"></div>
+    <h4>Muscles ciblés</h4>
+    <div class="modal-muscles" id="modalMuscles"></div>
+    <div class="modal-video">
+      <a id="modalVideoLink" href="#" target="_blank" rel="noopener">▶️ Voir la démonstration vidéo</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
