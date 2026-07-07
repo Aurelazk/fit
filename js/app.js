@@ -804,7 +804,7 @@ function drawWeightChart() {
 
   const data = state.weightLog.filter(m => m.weight);
   if (data.length < 2) {
-    ctx.fillStyle = 'var(--text3)';
+    ctx.fillStyle = '#55556a';
     ctx.font = '14px sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('Ajoute au moins 2 mesures pour voir le graphique', canvas.width/2, canvas.height/2);
