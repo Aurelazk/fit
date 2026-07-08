@@ -699,6 +699,37 @@ body { -webkit-font-smoothing: antialiased; }
 .food-grid.avoid .food-card .food-name { color: #ffb3b3; }
 .nutrition-tip { margin-top: 18px; margin-bottom: 20px; }
 
+/* EXERCISE ICON BADGE */
+.exo-thumb { position: relative; }
+.exo-icon-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 16px;
+  background: rgba(15,15,19,.75);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+}
+.cadence-box {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: rgba(0,230,118,.08);
+  border: 1px solid rgba(0,230,118,.25);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-top: 14px;
+}
+.cadence-icon { font-size: 18px; margin-top: 1px; }
+.cadence-box strong { font-size: 12px; display: block; margin-bottom: 2px; }
+.cadence-box p { font-size: 12px; color: var(--text2); line-height: 1.4; margin: 0; }
+
 /* BOTTOM NAV */
 #bottomNav {
   display: flex;

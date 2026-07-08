@@ -185,7 +185,27 @@ const EXERCICES = [
     ] }
 ];
 
-// ===== DATA: NUTRITION (adapté au Bénin/Afrique de l'Ouest) =====
+// ===== DATA: MÉTA EXERCICES (icônes, cadence, minuteur) =====
+const EXO_META = {
+  'squat':            { icon:'🏋️', cadence:'2s descente • 1s pause en bas • 1s remontée', timer:{ type:'interval', work:30, rest:20, rounds:4, label:'4 séries de 30s' } },
+  'pompe':            { icon:'💪', cadence:'2s descente • 1s pause en bas • 1s poussée', timer:{ type:'interval', work:25, rest:30, rounds:4, label:'4 séries de 25s' } },
+  'pompe-murale':      { icon:'🧱', cadence:'2s descente • 1s pause • 1s poussée', timer:{ type:'interval', work:30, rest:20, rounds:4, label:'4 séries de 30s' } },
+  'pompe-genoux':      { icon:'🙇', cadence:'2s descente • 1s pause • 1s poussée', timer:{ type:'interval', work:25, rest:25, rounds:4, label:'4 séries de 25s' } },
+  'planche':          { icon:'🧘', cadence:'Position tenue, respiration lente et régulière', timer:{ type:'countdown', seconds:30, label:'Tenir 30s' } },
+  'planche-laterale':  { icon:'🤸', cadence:'Position tenue, hanches hautes, respiration régulière', timer:{ type:'countdown', seconds:25, label:'Tenir 25s de chaque côté' } },
+  'fente':            { icon:'🦵', cadence:'2s descente • 1s pause • 1s remontée, alterne les jambes', timer:{ type:'interval', work:30, rest:20, rounds:4, label:'4 séries de 30s' } },
+  'mountain-climber':  { icon:'⛰️', cadence:'Rythme rapide et continu, genoux vers la poitrine', timer:{ type:'interval', work:20, rest:20, rounds:6, label:'6 tours de 20s' } },
+  'crunch':           { icon:'🔥', cadence:'1s montée • 1s pause contractée • 2s descente', timer:{ type:'interval', work:30, rest:20, rounds:3, label:'3 séries de 30s' } },
+  'releve-jambes':     { icon:'🦿', cadence:'2s montée • 1s pause • 3s descente lente', timer:{ type:'interval', work:25, rest:25, rounds:3, label:'3 séries de 25s' } },
+  'burpee':           { icon:'⚡', cadence:'Enchaînement rapide, respire à fond entre les répétitions', timer:{ type:'interval', work:20, rest:30, rounds:5, label:'5 tours de 20s' } },
+  'jump-squat':        { icon:'🚀', cadence:'Descente contrôlée, saut explosif, réception souple', timer:{ type:'interval', work:20, rest:25, rounds:5, label:'5 tours de 20s' } },
+  'genoux-hauts':      { icon:'🏃', cadence:'Rythme soutenu, genoux à hauteur des hanches', timer:{ type:'interval', work:30, rest:15, rounds:6, label:'6 tours de 30s' } },
+  'russian-twist':     { icon:'🌀', cadence:'Rotation lente et contrôlée, expire à chaque tour', timer:{ type:'interval', work:30, rest:20, rounds:3, label:'3 séries de 30s' } },
+  'bicycle-crunch':    { icon:'🚴', cadence:'Mouvement lent et contrôlé, coude vers le genou opposé', timer:{ type:'interval', work:30, rest:20, rounds:3, label:'3 séries de 30s' } },
+};
+function getExoMeta(id) {
+  return EXO_META[id] || { icon:'💪', cadence:'Mouvement contrôlé, respiration régulière', timer:{ type:'countdown', seconds:30, label:'Tenir 30s' } };
+}
 const FOOD_CATEGORIES = ['Protéines', 'Glucides', 'Légumes & Fruits', 'Bonnes graisses'];
 
 const FOODS_GOOD = {
@@ -659,8 +679,12 @@ function renderExercises() {
     card.className = 'exo-card';
     card.onclick = () => openExoModal(exo.id);
     const canvasId = 'thumb-' + exo.id;
+    const meta = getExoMeta(exo.id);
     card.innerHTML = `
-      <div class="exo-thumb"><canvas id="${canvasId}" width="140" height="110" data-exo-anim="${exo.id}"></canvas></div>
+      <div class="exo-thumb">
+        <span class="exo-icon-badge">${meta.icon}</span>
+        <canvas id="${canvasId}" width="140" height="110" data-exo-anim="${exo.id}"></canvas>
+      </div>
       <span class="exo-name">${exo.name}</span>
       <span class="exo-diff">${exo.diff}</span>
     `;
@@ -691,8 +715,9 @@ function filterExercises() {
 function openExoModal(exoId) {
   const exo = EXERCICES.find(e => e.id === exoId);
   if (!exo) return;
+  const meta = getExoMeta(exoId);
 
-  document.getElementById('modalExoName').textContent = exo.name;
+  document.getElementById('modalExoName').textContent = `${meta.icon} ${exo.name}`;
   document.getElementById('modalExoDesc').textContent = exo.desc;
   document.getElementById('modalTags').innerHTML = `
     <span class="tag-diff">${exo.diff}</span>
@@ -701,7 +726,15 @@ function openExoModal(exoId) {
   `;
   document.getElementById('modalInstructions').innerHTML = 
     '<h4 style="font-size:14px;margin-bottom:6px;color:var(--text2)">📝 Conseils</h4><ul>' +
-    exo.conseils.map(c => `<li>• ${c}</li>`).join('') + '</ul>';
+    exo.conseils.map(c => `<li>• ${c}</li>`).join('') + '</ul>' +
+    `<div class="cadence-box">
+       <span class="cadence-icon">⏱️</span>
+       <div>
+         <strong>Cadence</strong>
+         <p>${meta.cadence}</p>
+       </div>
+     </div>
+     <button class="btn primary full mt-12" onclick="launchExoTimer('${exoId}')">▶️ Minuteur pour cet exercice (${meta.timer.label})</button>`;
   document.getElementById('modalMuscles').innerHTML = 
     exo.muscles.split(',').map(m => `<span>${m.trim()}</span>`).join('');
   document.getElementById('modalVideoLink').href = exo.video;
@@ -710,6 +743,22 @@ function openExoModal(exoId) {
 
   // Start animation in modal
   setTimeout(() => animateExercise(exoId, 'exoCanvas'), 100);
+}
+
+function launchExoTimer(exoId) {
+  const meta = getExoMeta(exoId);
+  closeExoModal();
+  navigate('timer');
+  if (meta.timer.type === 'countdown') {
+    switchTimerTab('countdown');
+    setCountdown(meta.timer.seconds, null);
+  } else {
+    switchTimerTab('interval');
+    document.getElementById('workTime').value = meta.timer.work;
+    document.getElementById('restTime').value = meta.timer.rest;
+    document.getElementById('intervalRounds').value = meta.timer.rounds;
+    resetInterval();
+  }
 }
 
 function closeExoModal(e) {
