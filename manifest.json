@@ -2,7 +2,7 @@
   "name": "FitPlan Bénin",
   "short_name": "FitPlan",
   "description": "Application de fitness avec programme 8 semaines, exercices animés, chrono et suivi",
-  "start_url": "/fit/",
+  "start_url": "/fitness-app/",
   "display": "standalone",
   "background_color": "#0f0f13",
   "theme_color": "#00e676",

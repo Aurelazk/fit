@@ -185,6 +185,150 @@ const EXERCICES = [
     ] }
 ];
 
+// ===== DATA: NUTRITION (adapté au Bénin/Afrique de l'Ouest) =====
+const FOOD_CATEGORIES = ['Protéines', 'Glucides', 'Légumes & Fruits', 'Bonnes graisses'];
+
+const FOODS_GOOD = {
+  'Protéines': [
+    { emoji:'🐟', name:'Poisson grillé/braisé' },
+    { emoji:'🍗', name:'Poulet sans peau' },
+    { emoji:'🥚', name:'Œufs' },
+    { emoji:'🫘', name:'Haricot (niébé)' },
+    { emoji:'🌱', name:'Soja / Tofu' },
+    { emoji:'🦐', name:'Crevettes' },
+  ],
+  'Glucides': [
+    { emoji:'🍠', name:'Igname bouillie' },
+    { emoji:'🍌', name:'Plantain bouilli' },
+    { emoji:'🍚', name:'Riz (portion modérée)' },
+    { emoji:'🌽', name:'Pâte de maïs' },
+    { emoji:'🥔', name:'Patate douce' },
+    { emoji:'🌾', name:'Mil / Sorgho' },
+  ],
+  'Légumes & Fruits': [
+    { emoji:'🥬', name:'Gombo' },
+    { emoji:'🍃', name:'Feuilles (crin-crin, épinard)' },
+    { emoji:'🍅', name:'Tomate' },
+    { emoji:'🥕', name:'Carotte' },
+    { emoji:'🍊', name:'Orange / Agrumes' },
+    { emoji:'🥭', name:'Mangue (avec modération)' },
+  ],
+  'Bonnes graisses': [
+    { emoji:'🥑', name:'Avocat' },
+    { emoji:'🥜', name:'Arachide (petite quantité)' },
+    { emoji:'🫒', name:'Huile d\'olive' },
+    { emoji:'🥥', name:'Noix de coco (modéré)' },
+  ]
+};
+
+const FOODS_AVOID = [
+  { emoji:'🍟', name:'Fritures (huile de palme en excès)' },
+  { emoji:'🥤', name:'Boissons sucrées / sodas' },
+  { emoji:'🍺', name:'Bière / alcool' },
+  { emoji:'🍬', name:'Sucre ajouté / bonbons' },
+  { emoji:'🍞', name:'Pain blanc en excès' },
+  { emoji:'🧈', name:'Excès d\'huile / beurre' },
+  { emoji:'🍪', name:'Biscuits industriels' },
+  { emoji:'🌙', name:'Manger tard le soir' },
+];
+
+let activeFoodTab = 'Protéines';
+
+function renderNutrition() {
+  // Food tabs
+  const tabsEl = document.getElementById('foodGoodTabs');
+  if (tabsEl.children.length === 0) {
+    tabsEl.innerHTML = FOOD_CATEGORIES.map(cat =>
+      `<button class="food-tab${cat === activeFoodTab ? ' active' : ''}" onclick="switchFoodTab('${cat}')">${cat}</button>`
+    ).join('');
+  }
+
+  const goodGrid = document.getElementById('foodGoodGrid');
+  goodGrid.innerHTML = FOODS_GOOD[activeFoodTab].map(f =>
+    `<div class="food-card"><span class="food-emoji">${f.emoji}</span><span class="food-name">${f.name}</span></div>`
+  ).join('');
+
+  const badGrid = document.getElementById('foodBadGrid');
+  if (badGrid.children.length === 0) {
+    badGrid.innerHTML = FOODS_AVOID.map(f =>
+      `<div class="food-card"><span class="food-emoji">${f.emoji}</span><span class="food-name">${f.name}</span></div>`
+    ).join('');
+  }
+
+  // Restore saved profile into calc form if exists
+  if (state.nutritionProfile) {
+    const p = state.nutritionProfile;
+    if (p.sexe) document.getElementById('calcSexe').value = p.sexe;
+    if (p.age) document.getElementById('calcAge').value = p.age;
+    if (p.poids) document.getElementById('calcPoids').value = p.poids;
+    if (p.taille) document.getElementById('calcTaille').value = p.taille;
+    if (p.activite) document.getElementById('calcActivite').value = p.activite;
+    if (p.objectif) document.getElementById('calcObjectif').value = p.objectif;
+    if (p.lastResult) showCalorieResult(p.lastResult);
+  }
+}
+
+function switchFoodTab(cat) {
+  activeFoodTab = cat;
+  document.querySelectorAll('.food-tab').forEach(t => t.classList.toggle('active', t.textContent === cat));
+  document.getElementById('foodGoodGrid').innerHTML = FOODS_GOOD[cat].map(f =>
+    `<div class="food-card"><span class="food-emoji">${f.emoji}</span><span class="food-name">${f.name}</span></div>`
+  ).join('');
+}
+
+function calculateCalories() {
+  const sexe = document.getElementById('calcSexe').value;
+  const age = parseFloat(document.getElementById('calcAge').value);
+  const poids = parseFloat(document.getElementById('calcPoids').value);
+  const taille = parseFloat(document.getElementById('calcTaille').value);
+  const activite = parseFloat(document.getElementById('calcActivite').value);
+  const objectif = document.getElementById('calcObjectif').value;
+
+  if (!age || !poids || !taille) {
+    alert('Remplis ton âge, poids et taille pour calculer.');
+    return;
+  }
+
+  // Mifflin-St Jeor
+  let bmr = 10 * poids + 6.25 * taille - 5 * age + (sexe === 'h' ? 5 : -161);
+  let tdee = bmr * activite;
+
+  let target, subLabel;
+  if (objectif === 'perte_rapide') { target = tdee - 900; subLabel = 'Déficit rapide (~0.8-1kg/semaine)'; }
+  else if (objectif === 'perte') { target = tdee - 500; subLabel = 'Déficit modéré (~0.5kg/semaine)'; }
+  else if (objectif === 'maintien') { target = tdee; subLabel = 'Maintien du poids actuel'; }
+  else { target = tdee + 300; subLabel = 'Léger surplus pour prise musculaire'; }
+
+  target = Math.max(1200, Math.round(target));
+
+  const result = { bmr: Math.round(bmr), tdee: Math.round(tdee), target, subLabel, poids };
+  state.nutritionProfile = { sexe, age, poids, taille, activite, objectif, lastResult: result };
+  saveState();
+  showCalorieResult(result);
+}
+
+function showCalorieResult(result) {
+  document.getElementById('calcResult').style.display = 'block';
+  document.getElementById('resultBMR').textContent = result.bmr + ' kcal';
+  document.getElementById('resultTDEE').textContent = result.tdee + ' kcal';
+  document.getElementById('resultTarget').textContent = result.target + ' kcal/jour';
+  document.getElementById('resultSub').textContent = result.subLabel;
+
+  // Macros: protein 2g/kg, fat 25% of calories, rest carbs
+  const proteinG = Math.round(result.poids * 2);
+  const proteinKcal = proteinG * 4;
+  const fatKcal = result.target * 0.25;
+  const fatG = Math.round(fatKcal / 9);
+  const carbKcal = Math.max(0, result.target - proteinKcal - fatKcal);
+  const carbG = Math.round(carbKcal / 4);
+
+  document.getElementById('resultMacros').innerHTML = `
+    <div class="calc-macro-item"><span class="calc-macro-value" style="color:#4fc3f7">${proteinG}g</span><span class="calc-macro-label">Protéines</span></div>
+    <div class="calc-macro-item"><span class="calc-macro-value" style="color:#ffd740">${carbG}g</span><span class="calc-macro-label">Glucides</span></div>
+    <div class="calc-macro-item"><span class="calc-macro-value" style="color:#ff8a65">${fatG}g</span><span class="calc-macro-label">Lipides</span></div>
+  `;
+}
+
 // ===== WORKOUT PLAN =====
 const PLAN = [];
 const days = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
@@ -384,6 +528,7 @@ function navigate(page) {
   if (page === 'exercises') renderExercises();
   if (page === 'home') renderHome();
   if (page === 'progress') renderProgress();
+  if (page === 'nutrition') renderNutrition();
 }
 
 // ===== HOME =====
@@ -804,7 +949,7 @@ function drawWeightChart() {
 
   const data = state.weightLog.filter(m => m.weight);
   if (data.length < 2) {
-    ctx.fillStyle = '#55556a';
+    ctx.fillStyle = 'var(--text3)';
     ctx.font = '14px sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('Ajoute au moins 2 mesures pour voir le graphique', canvas.width/2, canvas.height/2);

@@ -1,10 +1,10 @@
 const CACHE = 'fitplan-v1';
 const URLS = [
-  '/fit/',
-  '/fit/index.html',
-  '/fit/css/style.css',
-  '/fit/js/app.js',
-  '/fit/manifest.json'
+  '/fitness-app/',
+  '/fitness-app/index.html',
+  '/fitness-app/css/style.css',
+  '/fitness-app/js/app.js',
+  '/fitness-app/manifest.json'
 ];
 
 self.addEventListener('install', e => {
