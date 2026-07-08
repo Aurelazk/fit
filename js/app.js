@@ -182,6 +182,78 @@ const EXERCICES = [
       { head:[140,40],neck:[140,52],shoulder:[140,65],chest:[132,85],hip:[125,115],
         lElbow:[115,78],lHand:[105,92],rElbow:[165,60],rHand:[175,70],
         lKnee:[145,130],lFoot:[125,200],rKnee:[110,155],rFoot:[100,205] }
+    ] },
+  { id:'tuck-jump', name:'Sauts Groupés (Tuck Jump)', diff:'Difficile', muscles:'Cuisses, Abdos, Explosivité, Basket', type:'Explosivité',
+    desc:'Saute verticalement en ramenant les genoux vers la poitrine au sommet du saut. LE mouvement de référence pour la détente verticale.',
+    conseils:['Ramène les genoux le plus haut possible','Reste sur l\'avant du pied à la réception','Enchaîne les sauts sans temps mort'],
+    video:'https://www.youtube.com/results?search_query=tuck+jump+exercice+tutoriel',
+    keyframes:[
+      { head:[140,50],neck:[140,63],shoulder:[140,75],chest:[140,95],hip:[140,130],
+        lElbow:[115,90],lHand:[100,110],rElbow:[165,90],rHand:[180,110],
+        lKnee:[130,180],lFoot:[125,240],rKnee:[150,180],rFoot:[155,240] },
+      { head:[140,15],neck:[140,28],shoulder:[140,40],chest:[140,58],hip:[140,90],
+        lElbow:[115,50],lHand:[100,30],rElbow:[165,50],rHand:[180,30],
+        lKnee:[115,80],lFoot:[110,110],rKnee:[165,80],rFoot:[170,110] }
+    ] },
+  { id:'box-jump', name:'Box Jump (Saut sur Support)', diff:'Difficile', muscles:'Cuisses, Fessiers, Mollets, Explosivité, Basket', type:'Explosivité',
+    desc:'Saute pieds joints sur une marche, un banc ou un rebord stable, puis redescends en contrôlant. Reproduit l\'explosivité du saut au rebond.',
+    conseils:['Choisis une hauteur stable et sécurisée','Réceptionne-toi en pliant les genoux','Redescends du support, ne saute pas en bas'],
+    video:'https://www.youtube.com/results?search_query=box+jump+exercice+tutoriel',
+    keyframes:[
+      { head:[140,60],neck:[140,75],shoulder:[140,90],chest:[140,110],hip:[140,145],
+        lElbow:[110,100],lHand:[90,120],rElbow:[170,100],rHand:[190,120],
+        lKnee:[115,185],lFoot:[110,240],rKnee:[165,185],rFoot:[170,240] },
+      { head:[140,15],neck:[140,28],shoulder:[140,40],chest:[140,58],hip:[140,90],
+        lElbow:[110,45],lHand:[95,25],rElbow:[170,45],rHand:[185,25],
+        lKnee:[120,120],lFoot:[110,150],rKnee:[160,120],rFoot:[170,150] }
+    ] },
+  { id:'broad-jump', name:'Saut en Longueur (Broad Jump)', diff:'Difficile', muscles:'Cuisses, Fessiers, Explosivité, Basket', type:'Explosivité',
+    desc:'Saute vers l\'avant le plus loin possible depuis une position accroupie, bras qui s\'élancent pour donner l\'impulsion. Développe la puissance des jambes utile pour les appuis au basket.',
+    conseils:['Élance les bras vers l\'avant au décollage','Réceptionne-toi genoux fléchis, sans tomber','Vise la distance, pas la hauteur'],
+    video:'https://www.youtube.com/results?search_query=broad+jump+saut+en+longueur+tutoriel',
+    keyframes:[
+      { head:[130,60],neck:[130,75],shoulder:[130,90],chest:[130,110],hip:[130,145],
+        lElbow:[105,100],lHand:[85,120],rElbow:[155,100],rHand:[175,120],
+        lKnee:[110,185],lFoot:[105,240],rKnee:[150,185],rFoot:[155,240] },
+      { head:[175,30],neck:[175,42],shoulder:[172,55],chest:[168,75],hip:[162,105],
+        lElbow:[140,50],lHand:[120,35],rElbow:[195,60],rHand:[218,50],
+        lKnee:[130,140],lFoot:[100,160],rKnee:[190,140],rFoot:[222,165] }
+    ] },
+  { id:'jump-lunge', name:'Fentes Sautées Alternées', diff:'Difficile', muscles:'Cuisses, Fessiers, Explosivité, Basket', type:'Explosivité',
+    desc:'Alterne les jambes en fente avec un saut explosif à chaque changement, comme pour prendre l\'élan avant un lay-up.',
+    conseils:['Change de jambe en l\'air, pas au sol','Réceptionne-toi en douceur, genou aligné','Garde le buste bien droit'],
+    video:'https://www.youtube.com/results?search_query=jump+lunge+fentes+sautees+tutoriel',
+    keyframes:[
+      { head:[135,45],neck:[135,60],shoulder:[135,72],chest:[135,92],hip:[135,125],
+        lElbow:[110,85],lHand:[95,100],rElbow:[160,90],rHand:[175,75],
+        lKnee:[110,170],lFoot:[100,230],rKnee:[165,150],rFoot:[190,175] },
+      { head:[145,45],neck:[145,60],shoulder:[145,72],chest:[145,92],hip:[145,125],
+        lElbow:[120,90],lHand:[105,75],rElbow:[170,85],rHand:[185,100],
+        lKnee:[115,150],lFoot:[90,175],rKnee:[170,170],rFoot:[190,230] }
+    ] },
+  { id:'lateral-bound', name:'Sauts Latéraux (Lateral Bounds)', diff:'Moyen', muscles:'Cuisses, Fessiers, Chevilles, Explosivité, Basket', type:'Explosivité',
+    desc:'Saute latéralement d\'un pied sur l\'autre en te réceptionnant en équilibre stable, comme pour tenir tes appuis en défense au basket.',
+    conseils:['Réceptionne-toi sur une jambe stable avant de repartir','Garde le buste droit','Commence lentement puis accélère'],
+    video:'https://www.youtube.com/results?search_query=lateral+bound+saut+lateral+tutoriel',
+    keyframes:[
+      { head:[105,55],neck:[105,68],shoulder:[105,80],chest:[105,100],hip:[105,135],
+        lElbow:[85,95],lHand:[70,115],rElbow:[125,95],rHand:[140,115],
+        lKnee:[95,185],lFoot:[90,240],rKnee:[130,165],rFoot:[155,175] },
+      { head:[175,55],neck:[175,68],shoulder:[175,80],chest:[175,100],hip:[175,135],
+        lElbow:[155,95],lHand:[140,115],rElbow:[195,95],rHand:[210,115],
+        lKnee:[150,165],lFoot:[125,175],rKnee:[185,185],rFoot:[190,240] }
+    ] },
+  { id:'jump-rope', name:'Corde à Sauter', diff:'Facile', muscles:'Mollets, Cardio, Chevilles, Explosivité, Basket', type:'Explosivité',
+    desc:'Saute à la corde (réelle ou imaginaire) en rebondissant sur l\'avant du pied. Excellent pour construire la détente et la vivacité des chevilles.',
+    conseils:['Petits sauts, reste sur la pointe des pieds','Ce sont les poignets qui tournent, pas les bras','Respiration régulière et relâchée'],
+    video:'https://www.youtube.com/results?search_query=corde+a+sauter+technique+tutoriel',
+    keyframes:[
+      { head:[140,50],neck:[140,63],shoulder:[140,75],chest:[140,95],hip:[140,130],
+        lElbow:[120,95],lHand:[110,115],rElbow:[160,95],rHand:[170,115],
+        lKnee:[130,175],lFoot:[125,235],rKnee:[150,175],rFoot:[155,235] },
+      { head:[140,35],neck:[140,48],shoulder:[140,60],chest:[140,80],hip:[140,115],
+        lElbow:[120,80],lHand:[110,60],rElbow:[160,80],rHand:[170,60],
+        lKnee:[130,155],lFoot:[128,200],rKnee:[150,155],rFoot:[152,200] }
     ] }
 ];
 
@@ -202,7 +274,20 @@ const EXO_META = {
   'genoux-hauts':      { icon:'🏃', cadence:'Rythme soutenu, genoux à hauteur des hanches', timer:{ type:'interval', work:30, rest:15, rounds:6, label:'6 tours de 30s' } },
   'russian-twist':     { icon:'🌀', cadence:'Rotation lente et contrôlée, expire à chaque tour', timer:{ type:'interval', work:30, rest:20, rounds:3, label:'3 séries de 30s' } },
   'bicycle-crunch':    { icon:'🚴', cadence:'Mouvement lent et contrôlé, coude vers le genou opposé', timer:{ type:'interval', work:30, rest:20, rounds:3, label:'3 séries de 30s' } },
+  'tuck-jump':         { icon:'⬆️', cadence:'Explosion maximale vers le haut, genoux à la poitrine', timer:{ type:'interval', work:20, rest:30, rounds:5, label:'5 séries de 20s' }, fx:'explosive' },
+  'box-jump':          { icon:'📦', cadence:'Saut explosif, réception silencieuse et contrôlée', timer:{ type:'interval', work:20, rest:40, rounds:4, label:'4 séries de 20s (repos long)' }, fx:'explosive' },
+  'broad-jump':        { icon:'🐸', cadence:'Élan des bras, extension complète, réception stable', timer:{ type:'interval', work:15, rest:45, rounds:5, label:'5 sauts, repos 45s' }, fx:'explosive' },
+  'jump-lunge':        { icon:'🤾', cadence:'Switch rapide en l\'air, réception genou fléchi', timer:{ type:'interval', work:30, rest:20, rounds:4, label:'4 séries de 30s' }, fx:'explosive' },
+  'lateral-bound':     { icon:'↔️', cadence:'Réception stable avant de repartir de l\'autre côté', timer:{ type:'interval', work:25, rest:20, rounds:4, label:'4 séries de 25s' }, fx:'explosive' },
+  'jump-rope':         { icon:'🪢', cadence:'Petits sauts réguliers, rythme constant et léger', timer:{ type:'interval', work:45, rest:15, rounds:5, label:'5 séries de 45s' }, fx:'explosive' },
 };
+const TYPE_COLORS = {
+  'Force': '#00e676',
+  'Cardio': '#ffa726',
+  'Gainage': '#4fc3f7',
+  'Explosivité': '#ff4d6d'
+};
+function getExoColor(exo) { return TYPE_COLORS[exo.type] || '#00e676'; }
 function getExoMeta(id) {
   return EXO_META[id] || { icon:'💪', cadence:'Mouvement contrôlé, respiration régulière', timer:{ type:'countdown', seconds:30, label:'Tenir 30s' } };
 }
@@ -410,27 +495,42 @@ function lerpPose(p1, p2, t) {
   return r;
 }
 
-function drawFigure(ctx, pose, color = '#00e676') {
-  const w = ctx.canvas.width, h = ctx.canvas.height;
-  ctx.clearRect(0, 0, w, h);
+let particles = [];
 
-  // Ground line
-  ctx.strokeStyle = 'rgba(255,255,255,.06)';
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(10, h-15);
-  ctx.lineTo(w-10, h-15);
-  ctx.stroke();
+function spawnParticles(x, y, color, count = 14) {
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 1 + Math.random() * 3.5;
+    particles.push({
+      x, y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 1.5,
+      life: 1,
+      color
+    });
+  }
+}
 
-  ctx.strokeStyle = color;
-  ctx.lineWidth = 4;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
+function updateAndDrawParticles(ctx) {
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.15; // gravity
+    p.life -= 0.035;
+  });
+  particles = particles.filter(p => p.life > 0);
+  particles.forEach(p => {
+    ctx.save();
+    ctx.globalAlpha = Math.max(0, p.life);
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2.5 + p.life * 1.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  });
+}
 
-  const p = pose;
-  if (!p) return;
-
-  // Draw body parts
+function drawSkeleton(ctx, p) {
   const drawSeg = (a, b) => {
     if (!p[a] || !p[b]) return;
     ctx.beginPath();
@@ -438,7 +538,6 @@ function drawFigure(ctx, pose, color = '#00e676') {
     ctx.lineTo(p[b][0], p[b][1]);
     ctx.stroke();
   };
-
   drawSeg('head','neck');
   drawSeg('neck','shoulder');
   drawSeg('shoulder','chest');
@@ -451,22 +550,86 @@ function drawFigure(ctx, pose, color = '#00e676') {
   drawSeg('lKnee','lFoot');
   drawSeg('hip','rKnee');
   drawSeg('rKnee','rFoot');
+}
+
+function drawFigure(ctx, pose, color = '#00e676', opts = {}) {
+  const { trail = [], glow = false, flashEmoji = null, flashAlpha = 0 } = opts;
+  const w = ctx.canvas.width, h = ctx.canvas.height;
+  ctx.clearRect(0, 0, w, h);
+
+  // Subtle glowing spotlight backdrop for extra "pop"
+  if (glow) {
+    const grad = ctx.createRadialGradient(w/2, h*0.55, 10, w/2, h*0.55, w*0.6);
+    grad.addColorStop(0, color + '22');
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+  }
+
+  // Ground line
+  ctx.strokeStyle = 'rgba(255,255,255,.08)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(10, h-15);
+  ctx.lineTo(w-10, h-15);
+  ctx.stroke();
+
+  if (!pose) return;
+
+  // Ghost trail (motion blur) — draws previous poses fading out, for a sense of speed
+  trail.forEach((tp, i) => {
+    const a = ((i + 1) / (trail.length + 1)) * 0.28;
+    ctx.save();
+    ctx.globalAlpha = a;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    drawSkeleton(ctx, tp);
+    ctx.restore();
+  });
+
+  // Particles (impact dust / sparks) drawn behind the figure
+  updateAndDrawParticles(ctx);
+
+  // Main figure with glow
+  ctx.save();
+  if (glow) { ctx.shadowColor = color; ctx.shadowBlur = 18; }
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 5;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  drawSkeleton(ctx, pose);
+  ctx.restore();
 
   // Head
-  if (p.head) {
+  if (pose.head) {
+    ctx.save();
+    if (glow) { ctx.shadowColor = color; ctx.shadowBlur = 14; }
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.arc(p.head[0], p.head[1]-8, 12, 0, Math.PI*2);
+    ctx.arc(pose.head[0], pose.head[1]-8, 12, 0, Math.PI*2);
     ctx.fill();
+    ctx.restore();
   }
 
   // Hands
   ctx.fillStyle = color;
-  if (p.lHand) { ctx.beginPath(); ctx.arc(p.lHand[0], p.lHand[1], 3, 0, Math.PI*2); ctx.fill(); }
-  if (p.rHand) { ctx.beginPath(); ctx.arc(p.rHand[0], p.rHand[1], 3, 0, Math.PI*2); ctx.fill(); }
+  if (pose.lHand) { ctx.beginPath(); ctx.arc(pose.lHand[0], pose.lHand[1], 3, 0, Math.PI*2); ctx.fill(); }
+  if (pose.rHand) { ctx.beginPath(); ctx.arc(pose.rHand[0], pose.rHand[1], 3, 0, Math.PI*2); ctx.fill(); }
+
+  // Explosive flash emoji at the peak of the movement
+  if (flashEmoji && flashAlpha > 0.05 && pose.head) {
+    ctx.save();
+    ctx.globalAlpha = flashAlpha;
+    ctx.font = `${24 + flashAlpha * 14}px sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText(flashEmoji, pose.head[0] + 26, pose.head[1] - 10);
+    ctx.restore();
+  }
 
   // Exercise name overlay
-  ctx.fillStyle = 'rgba(255,255,255,.15)';
+  ctx.fillStyle = 'rgba(255,255,255,.18)';
   ctx.font = '11px sans-serif';
   ctx.textAlign = 'center';
   if (currentAnimExo) ctx.fillText(currentAnimExo, w/2, h-6);
@@ -475,32 +638,66 @@ function drawFigure(ctx, pose, color = '#00e676') {
 function animateExercise(exoId, canvasId) {
   const exo = EXERCICES.find(e => e.id === exoId);
   if (!exo || !exo.keyframes || exo.keyframes.length === 0) return;
-  
+
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   currentAnimExo = exo.name;
 
+  const meta = getExoMeta(exoId);
+  const color = getExoColor(exo);
+  const isExplosive = meta.fx === 'explosive';
+
   const frames = exo.keyframes;
   let t = 0;
-  const speed = 0.008;
+  const speed = isExplosive ? 0.011 : 0.008;
+  let trailBuffer = [];
+  let trailTick = 0;
+  let hasSpawnedThisCycle = false;
+  particles = [];
 
   if (animFrameId) { cancelAnimationFrame(animFrameId); animFrameId = null; }
 
   function loop() {
     t += speed;
-    if (t >= 1) t = 0;
+    let wrapped = false;
+    if (t >= 1) { t = 0; wrapped = true; hasSpawnedThisCycle = false; }
     const totalSegs = frames.length > 1 ? frames.length - 1 : 1;
     const seg = Math.min(Math.floor(t * totalSegs), totalSegs - 1);
     const localT = (t * totalSegs) - seg;
-    
+
     let pose;
     if (frames.length === 1) {
       pose = frames[0];
     } else {
       pose = lerpPose(frames[seg], frames[seg + 1], easeInOut(localT));
     }
-    drawFigure(ctx, pose);
+
+    // Sample trail every few frames for a ghosting effect
+    trailTick++;
+    if (trailTick % 3 === 0) {
+      trailBuffer.push(pose);
+      if (trailBuffer.length > 4) trailBuffer.shift();
+    }
+
+    // Trigger a particle burst + peak flash for explosive/jump exercises
+    let flashAlpha = 0;
+    if (isExplosive) {
+      flashAlpha = Math.pow(Math.sin(t * Math.PI), 5);
+      if (!hasSpawnedThisCycle && t > 0.02) {
+        const groundPose = frames[0];
+        if (groundPose.lFoot) spawnParticles(groundPose.lFoot[0], groundPose.lFoot[1], color, 8);
+        if (groundPose.rFoot) spawnParticles(groundPose.rFoot[0], groundPose.rFoot[1], color, 8);
+        hasSpawnedThisCycle = true;
+      }
+    }
+
+    drawFigure(ctx, pose, color, {
+      trail: trailBuffer.slice(0, -1),
+      glow: true,
+      flashEmoji: isExplosive ? '💥' : null,
+      flashAlpha
+    });
     animFrameId = requestAnimationFrame(loop);
   }
   loop();
@@ -676,7 +873,7 @@ function renderExercises() {
 
   filtered.forEach(exo => {
     const card = document.createElement('div');
-    card.className = 'exo-card';
+    card.className = 'exo-card' + (exo.type === 'Explosivité' ? ' exo-explosive' : '');
     card.onclick = () => openExoModal(exo.id);
     const canvasId = 'thumb-' + exo.id;
     const meta = getExoMeta(exo.id);
@@ -699,7 +896,7 @@ function renderExercises() {
       if (canvas) {
         const ctx = canvas.getContext('2d');
         if (exo.keyframes && exo.keyframes.length > 0) {
-          drawFigure(ctx, exo.keyframes[0], 'rgba(0,230,118,.4)');
+          drawFigure(ctx, exo.keyframes[0], getExoColor(exo), { glow: true });
         }
       }
     });
@@ -722,7 +919,7 @@ function openExoModal(exoId) {
   document.getElementById('modalTags').innerHTML = `
     <span class="tag-diff">${exo.diff}</span>
     <span class="tag-muscle">${exo.muscles.split(',')[0]}</span>
-    <span class="tag-type">${exo.type}</span>
+    <span class="tag-type${exo.type === 'Explosivité' ? ' tag-explosive' : ''}">${exo.type === 'Explosivité' ? '🔥 ' : ''}${exo.type}</span>
   `;
   document.getElementById('modalInstructions').innerHTML = 
     '<h4 style="font-size:14px;margin-bottom:6px;color:var(--text2)">📝 Conseils</h4><ul>' +

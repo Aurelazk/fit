@@ -730,6 +730,23 @@ body { -webkit-font-smoothing: antialiased; }
 .cadence-box strong { font-size: 12px; display: block; margin-bottom: 2px; }
 .cadence-box p { font-size: 12px; color: var(--text2); line-height: 1.4; margin: 0; }
 
+/* EXPLOSIVE / BASKETBALL EXERCISES */
+.exo-card.exo-explosive { border: 1px solid rgba(255,77,109,.3); }
+.exo-card.exo-explosive .exo-icon-badge {
+  background: rgba(255,77,109,.25);
+  box-shadow: 0 0 10px rgba(255,77,109,.55);
+  animation: pulseGlow 1.6s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 6px rgba(255,77,109,.4); }
+  50% { box-shadow: 0 0 14px rgba(255,77,109,.8); }
+}
+.tag-type.tag-explosive {
+  background: rgba(255,77,109,.15);
+  color: #ff8fa3;
+  border: 1px solid rgba(255,77,109,.4);
+}
+
 /* BOTTOM NAV */
 #bottomNav {
   display: flex;
